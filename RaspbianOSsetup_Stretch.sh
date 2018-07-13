@@ -2,11 +2,11 @@
 #
 # Copyright 2017 The MathWorks, Inc.
 #
-#  Customize the default Raspberry Pi Raspbian Stretch Lite image to be compatible with MATHWORKS tools
+#  Customize the default Raspberry Pi Raspbian Jessie Lite image to be compatible with MATHWORKS tools
 #  Run the following shell script as a sudoer.
 #  The default usename is assumed to be pi. If your username is different, change it accorsingle in the following command
 username="pi"
-echo "Customizing Raspbian Stretch Lite..."
+echo "Customizing Raspbian Jessie Lite..."
 # Update the package repository.
 echo "1. Update package repository..."
 sudo apt-get -y update
@@ -27,6 +27,7 @@ sudo apt-get -y upgrade
 # 11. sense-hat
 # 12. libsox-dev
 # 13. libcurl4-openssl-dev
+# 14. paho-mqtt
 echo "3. Installing required software packages..."
 sudo apt-get -y install libsdl1.2-dev alsa-utils espeak i2c-tools libi2c-dev ssmtp ntpdate git-core v4l-utils cmake sense-hat sox libsox-fmt-all libsox-dev libcurl4-openssl-dev
 # Clean-up the installation
@@ -84,10 +85,13 @@ sudo ldconfig
 cd
 sudo rm -f 1.0.0.zip
 sudo rm -r -f /tmp/nanomsg-1.0.0
+#Install paho-mqtt library
+echo "10. Installing nanomsg"
+sudo apt-get update -y; sudo apt-get install libssl-dev -y; cd /tmp ; git clone https://github.com/eclipse/paho.mqtt.c.git ; cd /tmp/paho.mqtt.c ; sudo make install
 # Install ROS
 # Change the swap size to 500
-echo "10. Installing ROS"
-echo "10.1 Changing swap size to 500"
+echo "11. Installing ROS"
+echo "11.1 Changing swap size to 500"
 sudo sed -ie 's/CONF_SWAPSIZE/#CONF_SWAPSIZE/g' /etc/dphys-swapfile
 sudo sed -i '$ a CONF_SWAPSIZE=500' /etc/dphys-swapfile
 sudo dphys-swapfile setup
@@ -138,12 +142,12 @@ catkin_init_workspace
 # Build ROS user workspace. This step creates devel and build directories under the ~/catkin_ws.
 cd ~/catkin_ws/
 catkin_make
-echo "10.2 Reverting swap file changes"
+echo "11.2 Reverting swap file changes"
 sudo sed -i '/CONF_SWAPSIZE=500/d' /etc/dphys-swapfile
 sudo sed -ie 's/#CONF_SWAPSIZE/CONF_SWAPSIZE/g' /etc/dphys-swapfile
 # Add user to video and i2c user group
-echo "11. Adding user to video group..."
+echo "12. Adding user to video group..."
 sudo adduser pi video
-echo "12. Adding user to i2c group..."
+echo "13. Adding user to i2c group..."
 sudo adduser pi i2c
 echo "Customization Complete..."

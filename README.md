@@ -88,3 +88,14 @@ Depending on the version of the Raspbian OS running on your Raspberry Pi, use th
 
 4. After execution, if the command returns a valid Raspi object, the setup for Raspberry Pi is successful.
 
+
+
+**Installation of ARM® Compute Library on Raspberry Pi**
+
+In order to develop and deploy any deep learning application using MATLAB/Simulink onto Raspberry Pi, there exists a dependency on the ARM® Compute library. 
+
+
+[RaspbianInstallARMComputeLib.sh](RaspbianInstallARMComputeLib.sh) is a script which installs and configures ARM Compute library v19.05 on the Raspberry Pi hardware. 
+
+
+To use this script, copy this file onto your Raspberry Pi hardware and run the shell script. Post sucessful installation, reboot your Raspberry Pi.

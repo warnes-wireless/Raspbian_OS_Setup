@@ -52,10 +52,11 @@ Depending on the version of the Raspbian OS running on your Raspberry Pi, use th
 
 1. For Raspbian Jessie - [RaspbianOSSetup_Jessie.sh](/RaspbianOSsetup_Jessie.sh)
 2. For Raspbian Stretch - [RaspbianOSSetup_Stretch.sh](/RaspbianOSsetup_Stretch.sh)
+2. For Raspbian Bullseye - [RaspbianOSSetup_Bullseye.sh](/RaspbianOSsetup_Stretch.sh)
 
 **Instructions for Use**
 
-  1. Follow the instructions provided in the Raspberry Pi official documentation page to download and setup Raspbian OS on your        Raspberry Pi.
+  1. Follow the instructions provided in the Raspberry Pi official documentation page to download and setup Raspbian OS on your Raspberry Pi.
   2. Copy the Shell script corresponding to your Raspbian version to the Raspberry Pi hardware. 
   3. On the Raspberry Pi terminal, run the shell script.
   For example
